@@ -1,8 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { Switch, Route } from "react-router-dom";
+import {BrowserRouter, Routes, Route} from "react-router-dom"
 
-function App() {
-  return <h1>Project Client</h1>;
+import Navbar from "./components/Navbar"
+import Dashboard from "./pages/Dashboard"
+import Properties from "./pages/Properties"
+import Tenants from "./pages/Tenants"
+
+function App(){
+
+return(
+
+<BrowserRouter>
+
+<Navbar/>
+
+<div className="container mt-4">
+
+<Routes>
+
+<Route path="/" element={<Dashboard/>}/>
+<Route path="/properties" element={<Properties/>}/>
+<Route path="/tenants" element={<Tenants/>}/>
+
+</Routes>
+
+</div>
+
+</BrowserRouter>
+
+)
+
 }
 
-export default App;
+export default App

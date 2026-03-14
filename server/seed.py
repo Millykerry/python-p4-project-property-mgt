@@ -1,17 +1,19 @@
-#!/usr/bin/env python3
-
-# Standard library imports
-from random import randint, choice as rc
-
-# Remote library imports
-from faker import Faker
-
-# Local imports
 from app import app
-from models import db
+from config import db
+from models import Property, Tenant
 
-if __name__ == '__main__':
-    fake = Faker()
-    with app.app_context():
-        print("Starting seed...")
-        # Seed code goes here!
+with app.app_context():
+
+    db.drop_all()
+    db.create_all()
+
+    p1 = Property(name="Sunset Apartments", location="Nairobi")
+    p2 = Property(name="Green Villas", location="Westlands")
+
+    t1 = Tenant(name="John Doe", email="john@email.com")
+    t2 = Tenant(name="Mary Jane", email="mary@email.com")
+
+    db.session.add_all([p1,p2,t1,t2])
+    db.session.commit()
+
+    print("Database seeded!")
